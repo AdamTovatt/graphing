@@ -95,21 +95,6 @@ namespace Graphing
             double xScale = (graph.MaxX - graph.MinX) / graph.BitmapWidth;
             double yScale =  ySize / graph.BitmapHeight;
 
-            //punkter
-            foreach (Point point in Points)
-            {
-                for (int x = 0; x < PointSize; x++)
-                {
-                    for (int y = 0; y < PointSize; y++)
-                    {
-                        bitmap.SetPixel(
-                            (int)Math.Round(point.X / xScale + (x - PointSize / 2), 0, MidpointRounding.AwayFromZero), 
-                            (int)Math.Round(ySize / yScale - (point.Y / yScale + (y - PointSize / 2)), 0, MidpointRounding.AwayFromZero), 
-                            PointColor);
-                    }
-                }
-            }
-
             //linjer
             for (int i = 0; i < Points.Count - 1; i++)
             {
@@ -143,6 +128,21 @@ namespace Graphing
                                 bitmap.SetPixel((int)Math.Round(xValue + _x, 0, MidpointRounding.AwayFromZero), bitmap.Height - y, FillColor);
                             }
                         }
+                    }
+                }
+            }
+
+            //punkter
+            foreach (Point point in Points)
+            {
+                for (int x = 0; x < PointSize; x++)
+                {
+                    for (int y = 0; y < PointSize; y++)
+                    {
+                        bitmap.SetPixel(
+                            (int)Math.Round(point.X / xScale + (x - PointSize / 2), 0, MidpointRounding.AwayFromZero),
+                            (int)Math.Round(ySize / yScale - (point.Y / yScale + (y - PointSize / 2)), 0, MidpointRounding.AwayFromZero),
+                            PointColor);
                     }
                 }
             }
